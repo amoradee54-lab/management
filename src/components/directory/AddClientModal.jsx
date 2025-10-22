@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Dialog,
@@ -24,7 +25,11 @@ export default function AddClientModal({ isOpen, onClose, onSave, configurations
     industry: "",
     country: "",
     status: "Active",
-    notes: ""
+    notes: "",
+    linkedin_url: "", // New field
+    website_url: "",   // New field
+    fiverr_profile: "", // New field
+    upwork_profile: "" // New field
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -44,7 +49,11 @@ export default function AddClientModal({ isOpen, onClose, onSave, configurations
       industry: "",
       country: "",
       status: "Active",
-      notes: ""
+      notes: "",
+      linkedin_url: "",
+      website_url: "",
+      fiverr_profile: "",
+      upwork_profile: ""
     });
   };
 
@@ -148,6 +157,48 @@ export default function AddClientModal({ isOpen, onClose, onSave, configurations
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+
+          <div>
+            <Label className="text-blue-300">LinkedIn URL</Label>
+            <Input
+              value={formData.linkedin_url}
+              onChange={(e) => setFormData({ ...formData, linkedin_url: e.target.value })}
+              placeholder="https://linkedin.com/in/username"
+              className="bg-slate-800 border-slate-700 text-white"
+            />
+          </div>
+
+          <div>
+            <Label className="text-blue-300">Website URL</Label>
+            <Input
+              value={formData.website_url}
+              onChange={(e) => setFormData({ ...formData, website_url: e.target.value })}
+              placeholder="https://example.com"
+              className="bg-slate-800 border-slate-700 text-white"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-blue-300">Fiverr Profile URL</Label>
+              <Input
+                value={formData.fiverr_profile}
+                onChange={(e) => setFormData({ ...formData, fiverr_profile: e.target.value })}
+                placeholder="https://fiverr.com/username"
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+            </div>
+
+            <div>
+              <Label className="text-blue-300">Upwork Profile URL</Label>
+              <Input
+                value={formData.upwork_profile}
+                onChange={(e) => setFormData({ ...formData, upwork_profile: e.target.value })}
+                placeholder="https://upwork.com/freelancers/username"
+                className="bg-slate-800 border-slate-700 text-white"
+              />
             </div>
           </div>
 

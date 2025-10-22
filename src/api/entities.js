@@ -9,6 +9,8 @@ export const Configuration = base44.entities.Configuration;
 
 export const QuickAccessLinks = base44.entities.QuickAccessLinks;
 
+export const Project = base44.entities.Project;
+
 
 
 // auth sdk:

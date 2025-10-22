@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -221,6 +222,39 @@ export default function MinimalClientCard({ client, onClick, onWhatsApp, onEmail
                 title="Website"
               >
                 <Globe className="w-4 h-4" />
+              </Button>
+            )}
+            {client.fiverr_profile && (
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(client.fiverr_profile, '_blank');
+                }}
+                className="h-8 w-8 hover:bg-green-500/20 text-green-400"
+                title="Fiverr"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13 13V5H5v-.5C5 3.673 5.673 3 6.5 3H8V0H6.5A4.5 4.5 0 0 0 2 4.5V5H0v3h2v5H0v3h7v-3H5V8h5.028v5H8v3h7v-3h-2z"/>
+                  <circle cx="11.5" cy="1.5" r="1.5"/>
+                </svg>
+              </Button>
+            )}
+            {client.upwork_profile && (
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(client.upwork_profile, '_blank');
+                }}
+                className="h-8 w-8 hover:bg-emerald-500/20 text-emerald-400"
+                title="Upwork"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 56.7 56.7" fill="currentColor">
+                  <path d="M42.4 17.7c-5.3 0-9.3 3.5-10.9 9-2.5-3.9-4.5-8.3-5.6-12.1h-5.6v14.9c0 2.8-2.3 5.1-5.1 5.1s-5.1-2.3-5.1-5.1V14.6H4.3v14.9c0 6.1 4.9 11.1 11.1 11.1 6.1 0 11.1-4.9 11.1-11.1v-2.5c1 2.2 2.2 4.4 3.6 6.4l-3.3 15.7h5.9l2.4-11.4c2.2 1.4 4.7 2.2 7.4 2.2 6.1 0 11.1-5.3 11.1-12s-5-10.2-11.2-10.2zm0 17.3c-2.4 0-4.6-1-6.5-2.7l.5-2 .1-.3c.4-2.4 1.9-6.5 6.1-6.5 3.2 0 5.8 2.6 5.8 5.8s-2.7 5.7-6 5.7z"/>
+                </svg>
               </Button>
             )}
           </div>

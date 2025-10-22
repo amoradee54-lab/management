@@ -6,6 +6,10 @@ import Clients from "./Clients";
 
 import Configuration from "./Configuration";
 
+import ProjectsLog from "./ProjectsLog";
+
+import Home from "./Home";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -15,6 +19,10 @@ const PAGES = {
     Clients: Clients,
     
     Configuration: Configuration,
+    
+    ProjectsLog: ProjectsLog,
+    
+    Home: Home,
     
 }
 
@@ -48,6 +56,10 @@ function PagesContent() {
                 <Route path="/Clients" element={<Clients />} />
                 
                 <Route path="/Configuration" element={<Configuration />} />
+                
+                <Route path="/ProjectsLog" element={<ProjectsLog />} />
+                
+                <Route path="/Home" element={<Home />} />
                 
             </Routes>
         </Layout>

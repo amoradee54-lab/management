@@ -451,7 +451,7 @@ export default function Clients() {
             <h1 className="text-2xl md:text-4xl font-bold text-white mb-1">Clients</h1>
             <p className="text-sm md:text-base text-blue-300">Manage your client relationships</p>
           </div>
-          <div className="hidden md:flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {selectionMode ? (
               <>
                 <Button 
@@ -546,23 +546,6 @@ export default function Clients() {
               </>
             )}
           </div>
-
-          <div className="md:hidden">
-            <MobileActionMenu
-                selectionMode={selectionMode}
-                setSelectionMode={setSelectionMode}
-                setSelectedIds={setSelectedIds}
-                filteredClients={filteredClients}
-                selectedIdsSize={selectedIds.size}
-                handleSelectAll={handleSelectAll}
-                handleExportSelected={handleExportSelected}
-                setShowDeleteDialog={setShowDeleteDialog}
-                handleDownloadTemplate={handleDownloadTemplate}
-                handleImportClick={handleImportClick}
-                handleExport={handleExport}
-                setAddModalOpen={setAddModalOpen}
-            />
-          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
@@ -654,6 +637,7 @@ export default function Clients() {
         }}
         contact={messageContact}
         type={messageType}
+        isClient={true}
       />
 
       <AddClientModal

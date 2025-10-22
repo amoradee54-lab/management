@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox"; // Added Checkbox import
+import { Checkbox } from "@/components/ui/checkbox";
 import { Plus, X, Upload } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
@@ -70,17 +70,22 @@ export default function EditClientModal({ client, isOpen, onClose, onSave, confi
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSaving(true);
-    const dataToSave = {
-      ...formData,
-      email: emails.join(', '),
-      tags: formData.tags ? formData.tags.join(', ') : '' // Join tags for submission
-    };
-    await onSave(client.id, dataToSave);
-    setIsSaving(false);
+    try {
+      const dataToSave = {
+        ...formData,
+        email: emails.join(', '),
+        tags: Array.isArray(formData.tags) ? formData.tags : []
+      };
+      await onSave(client.id, dataToSave);
+    } catch (error) {
+      console.error("Error saving client:", error);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const clientStatusOptions = configurations?.find(c => c.category === "client_status")?.values || [];
-  const clientTagOptions = configurations?.find(c => c.category === "client_tags")?.values || []; // Added clientTagOptions
+  const clientTagOptions = configurations?.find(c => c.category === "client_tags")?.values || [];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -288,6 +293,28 @@ export default function EditClientModal({ client, isOpen, onClose, onSave, confi
               placeholder="https://example.com"
               className="bg-slate-800 border-slate-700 text-white"
             />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-blue-300">Fiverr Profile URL</Label>
+              <Input
+                value={formData.fiverr_profile || ""}
+                onChange={(e) => setFormData({ ...formData, fiverr_profile: e.target.value })}
+                placeholder="https://fiverr.com/username"
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+            </div>
+
+            <div>
+              <Label className="text-blue-300">Upwork Profile URL</Label>
+              <Input
+                value={formData.upwork_profile || ""}
+                onChange={(e) => setFormData({ ...formData, upwork_profile: e.target.value })}
+                placeholder="https://upwork.com/freelancers/username"
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+            </div>
           </div>
 
           <div>
